@@ -1,0 +1,343 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\scripts\\setup_environment.sh||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\setup_environment.sh||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\docker\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docker\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\docker\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docker\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\src\\components\\ModelViewer.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\ModelViewer.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\src\\components\\UploadForm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\UploadForm.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\src\\App.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\App.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\utils\\sensor_input.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\utils\\sensor_input.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\utils\\optimization.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\utils\\optimization.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\utils\\ai_integration.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\utils\\ai_integration.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\model_processing.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\model_processing.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\app.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\app.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\docs\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docs\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\src\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\public\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\public\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\utils\\__init__.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\utils\\__init__.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "requirements.txt",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\requirements.txt",
+              "RelativeDocumentMoniker": "backend\\requirements.txt",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\requirements.txt",
+              "RelativeToolTip": "backend\\requirements.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-09-20T19:02:02.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\.env",
+              "RelativeDocumentMoniker": "backend\\.env",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\.env",
+              "RelativeToolTip": "backend\\.env",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-09-20T19:02:14.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "App.js",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\src\\App.js",
+              "RelativeDocumentMoniker": "frontend\\src\\App.js",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\src\\App.js",
+              "RelativeToolTip": "frontend\\src\\App.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-20T19:05:27.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UploadForm.js",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\src\\components\\UploadForm.js",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\UploadForm.js",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\src\\components\\UploadForm.js",
+              "RelativeToolTip": "frontend\\src\\components\\UploadForm.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-20T19:06:34.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ModelViewer.js",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\src\\components\\ModelViewer.js",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\ModelViewer.js",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\src\\components\\ModelViewer.js",
+              "RelativeToolTip": "frontend\\src\\components\\ModelViewer.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-20T19:06:20.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "package.json",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\package.json",
+              "RelativeDocumentMoniker": "frontend\\package.json",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\package.json",
+              "RelativeToolTip": "frontend\\package.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-20T19:04:25.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\docker\\Dockerfile",
+              "RelativeDocumentMoniker": "docker\\Dockerfile",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\docker\\Dockerfile",
+              "RelativeToolTip": "docker\\Dockerfile",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-09-20T19:07:43.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "docker-compose.yml",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\docker\\docker-compose.yml",
+              "RelativeDocumentMoniker": "docker\\docker-compose.yml",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\docker\\docker-compose.yml",
+              "RelativeToolTip": "docker\\docker-compose.yml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2024-09-20T19:08:03.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "setup_environment.sh",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\scripts\\setup_environment.sh",
+              "RelativeDocumentMoniker": "scripts\\setup_environment.sh",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\scripts\\setup_environment.sh",
+              "RelativeToolTip": "scripts\\setup_environment.sh",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGSSURBVDhPpZO/agJBEId/uZgIWghiI4I2NhIUtLOwuJRHLhACtoKlnc/gI4jgI4hdJIQrAqmCvUWC2FqphSCi5o\u002BXmXFvT3IWgXzw4TI7M87t7eFfuK57ppaMQVrkFXlBHu8xLvlJvpFP5Dep4eJHkpP\u002BokOek5obMpCYzWbdWCwWiCvvSPlnhsfWJBIJ1Ot12LYt60KhgEgkonY1UuONYZLXvKhWq2g2m0in09jv9xxCPp9HuVyWZuPxWGLEK/kSOqz9A9vtdohGo7AsC6HQYZsOG\u002Bv1Gt1uF4PBQGIe3iNolsulJDYaDQyHQ2y3W8znc0wmE/T7fZXlE2hgGIYUTadTdDodzGYzmardbmO1Wqksn0CDcDiMZDKJXC6HTCYj57BYLLDZbPSZHOM14NeiqVQqUpxKpaSIJ\u002BJHKpVKKsPHa8A3THAcB61WS0aPx\u002BMy/mg0Qq1WQ6/XU1nCh/oVbPL3RXGLxaJrmmYgrrwnNXwf\u002BHqeSjzlMynv\u002BPiD4Sa3JN\u002BwSw6cgMd\u002BJx/ILw78E\u002BAHyDum0hZCUq4AAAAASUVORK5CYII=",
+              "WhenOpened": "2024-09-20T19:09:17.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "sensor_input.py",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\utils\\sensor_input.py",
+              "RelativeDocumentMoniker": "backend\\utils\\sensor_input.py",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\utils\\sensor_input.py",
+              "RelativeToolTip": "backend\\utils\\sensor_input.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGSSURBVDhPpZO/agJBEId/uZgIWghiI4I2NhIUtLOwuJRHLhACtoKlnc/gI4jgI4hdJIQrAqmCvUWC2FqphSCi5o\u002BXmXFvT3IWgXzw4TI7M87t7eFfuK57ppaMQVrkFXlBHu8xLvlJvpFP5Dep4eJHkpP\u002BokOek5obMpCYzWbdWCwWiCvvSPlnhsfWJBIJ1Ot12LYt60KhgEgkonY1UuONYZLXvKhWq2g2m0in09jv9xxCPp9HuVyWZuPxWGLEK/kSOqz9A9vtdohGo7AsC6HQYZsOG\u002Bv1Gt1uF4PBQGIe3iNolsulJDYaDQyHQ2y3W8znc0wmE/T7fZXlE2hgGIYUTadTdDodzGYzmardbmO1Wqksn0CDcDiMZDKJXC6HTCYj57BYLLDZbPSZHOM14NeiqVQqUpxKpaSIJ\u002BJHKpVKKsPHa8A3THAcB61WS0aPx\u002BMy/mg0Qq1WQ6/XU1nCh/oVbPL3RXGLxaJrmmYgrrwnNXwf\u002BHqeSjzlMynv\u002BPiD4Sa3JN\u002BwSw6cgMd\u002BJx/ILw78E\u002BAHyDum0hZCUq4AAAAASUVORK5CYII=",
+              "WhenOpened": "2024-09-20T19:03:38.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "optimization.py",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\utils\\optimization.py",
+              "RelativeDocumentMoniker": "backend\\utils\\optimization.py",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\utils\\optimization.py",
+              "RelativeToolTip": "backend\\utils\\optimization.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGSSURBVDhPpZO/agJBEId/uZgIWghiI4I2NhIUtLOwuJRHLhACtoKlnc/gI4jgI4hdJIQrAqmCvUWC2FqphSCi5o\u002BXmXFvT3IWgXzw4TI7M87t7eFfuK57ppaMQVrkFXlBHu8xLvlJvpFP5Dep4eJHkpP\u002BokOek5obMpCYzWbdWCwWiCvvSPlnhsfWJBIJ1Ot12LYt60KhgEgkonY1UuONYZLXvKhWq2g2m0in09jv9xxCPp9HuVyWZuPxWGLEK/kSOqz9A9vtdohGo7AsC6HQYZsOG\u002Bv1Gt1uF4PBQGIe3iNolsulJDYaDQyHQ2y3W8znc0wmE/T7fZXlE2hgGIYUTadTdDodzGYzmardbmO1Wqksn0CDcDiMZDKJXC6HTCYj57BYLLDZbPSZHOM14NeiqVQqUpxKpaSIJ\u002BJHKpVKKsPHa8A3THAcB61WS0aPx\u002BMy/mg0Qq1WQ6/XU1nCh/oVbPL3RXGLxaJrmmYgrrwnNXwf\u002BHqeSjzlMynv\u002BPiD4Sa3JN\u002BwSw6cgMd\u002BJx/ILw78E\u002BAHyDum0hZCUq4AAAAASUVORK5CYII=",
+              "WhenOpened": "2024-09-20T19:03:23.992Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ai_integration.py",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\utils\\ai_integration.py",
+              "RelativeDocumentMoniker": "backend\\utils\\ai_integration.py",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\utils\\ai_integration.py",
+              "RelativeToolTip": "backend\\utils\\ai_integration.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGSSURBVDhPpZO/agJBEId/uZgIWghiI4I2NhIUtLOwuJRHLhACtoKlnc/gI4jgI4hdJIQrAqmCvUWC2FqphSCi5o\u002BXmXFvT3IWgXzw4TI7M87t7eFfuK57ppaMQVrkFXlBHu8xLvlJvpFP5Dep4eJHkpP\u002BokOek5obMpCYzWbdWCwWiCvvSPlnhsfWJBIJ1Ot12LYt60KhgEgkonY1UuONYZLXvKhWq2g2m0in09jv9xxCPp9HuVyWZuPxWGLEK/kSOqz9A9vtdohGo7AsC6HQYZsOG\u002Bv1Gt1uF4PBQGIe3iNolsulJDYaDQyHQ2y3W8znc0wmE/T7fZXlE2hgGIYUTadTdDodzGYzmardbmO1Wqksn0CDcDiMZDKJXC6HTCYj57BYLLDZbPSZHOM14NeiqVQqUpxKpaSIJ\u002BJHKpVKKsPHa8A3THAcB61WS0aPx\u002BMy/mg0Qq1WQ6/XU1nCh/oVbPL3RXGLxaJrmmYgrrwnNXwf\u002BHqeSjzlMynv\u002BPiD4Sa3JN\u002BwSw6cgMd\u002BJx/ILw78E\u002BAHyDum0hZCUq4AAAAASUVORK5CYII=",
+              "WhenOpened": "2024-09-20T19:03:07.192Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "model_processing.py",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\model_processing.py",
+              "RelativeDocumentMoniker": "backend\\model_processing.py",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\model_processing.py",
+              "RelativeToolTip": "backend\\model_processing.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGSSURBVDhPpZO/agJBEId/uZgIWghiI4I2NhIUtLOwuJRHLhACtoKlnc/gI4jgI4hdJIQrAqmCvUWC2FqphSCi5o\u002BXmXFvT3IWgXzw4TI7M87t7eFfuK57ppaMQVrkFXlBHu8xLvlJvpFP5Dep4eJHkpP\u002BokOek5obMpCYzWbdWCwWiCvvSPlnhsfWJBIJ1Ot12LYt60KhgEgkonY1UuONYZLXvKhWq2g2m0in09jv9xxCPp9HuVyWZuPxWGLEK/kSOqz9A9vtdohGo7AsC6HQYZsOG\u002Bv1Gt1uF4PBQGIe3iNolsulJDYaDQyHQ2y3W8znc0wmE/T7fZXlE2hgGIYUTadTdDodzGYzmardbmO1Wqksn0CDcDiMZDKJXC6HTCYj57BYLLDZbPSZHOM14NeiqVQqUpxKpaSIJ\u002BJHKpVKKsPHa8A3THAcB61WS0aPx\u002BMy/mg0Qq1WQ6/XU1nCh/oVbPL3RXGLxaJrmmYgrrwnNXwf\u002BHqeSjzlMynv\u002BPiD4Sa3JN\u002BwSw6cgMd\u002BJx/ILw78E\u002BAHyDum0hZCUq4AAAAASUVORK5CYII=",
+              "WhenOpened": "2024-09-20T19:01:49.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "app.py",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\app.py",
+              "RelativeDocumentMoniker": "backend\\app.py",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\app.py",
+              "RelativeToolTip": "backend\\app.py",
+              "ViewState": "AQIAACMAAAAAAAAAAAAAAGAAAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGSSURBVDhPpZO/agJBEId/uZgIWghiI4I2NhIUtLOwuJRHLhACtoKlnc/gI4jgI4hdJIQrAqmCvUWC2FqphSCi5o\u002BXmXFvT3IWgXzw4TI7M87t7eFfuK57ppaMQVrkFXlBHu8xLvlJvpFP5Dep4eJHkpP\u002BokOek5obMpCYzWbdWCwWiCvvSPlnhsfWJBIJ1Ot12LYt60KhgEgkonY1UuONYZLXvKhWq2g2m0in09jv9xxCPp9HuVyWZuPxWGLEK/kSOqz9A9vtdohGo7AsC6HQYZsOG\u002Bv1Gt1uF4PBQGIe3iNolsulJDYaDQyHQ2y3W8znc0wmE/T7fZXlE2hgGIYUTadTdDodzGYzmardbmO1Wqksn0CDcDiMZDKJXC6HTCYj57BYLLDZbPSZHOM14NeiqVQqUpxKpaSIJ\u002BJHKpVKKsPHa8A3THAcB61WS0aPx\u002BMy/mg0Qq1WQ6/XU1nCh/oVbPL3RXGLxaJrmmYgrrwnNXwf\u002BHqeSjzlMynv\u002BPiD4Sa3JN\u002BwSw6cgMd\u002BJx/ILw78E\u002BAHyDum0hZCUq4AAAAASUVORK5CYII=",
+              "WhenOpened": "2024-09-20T19:01:34.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\docs\\README.md",
+              "RelativeDocumentMoniker": "docs\\README.md",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\docs\\README.md",
+              "RelativeToolTip": "docs\\README.md",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2024-09-20T19:08:37.965Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\.env",
+              "RelativeDocumentMoniker": "frontend\\.env",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\.env",
+              "RelativeToolTip": "frontend\\.env",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-09-20T19:06:58.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "index.js",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\src\\index.js",
+              "RelativeDocumentMoniker": "frontend\\src\\index.js",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\src\\index.js",
+              "RelativeToolTip": "frontend\\src\\index.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-20T19:05:51.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\public\\index.html",
+              "RelativeDocumentMoniker": "frontend\\public\\index.html",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\frontend\\public\\index.html",
+              "RelativeToolTip": "frontend\\public\\index.html",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-09-20T19:05:03.549Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "__init__.py",
+              "DocumentMoniker": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\utils\\__init__.py",
+              "RelativeDocumentMoniker": "backend\\utils\\__init__.py",
+              "ToolTip": "C:\\Users\\cjone\\source\\repos\\AURAView-1.0\\backend\\utils\\__init__.py",
+              "RelativeToolTip": "backend\\utils\\__init__.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGSSURBVDhPpZO/agJBEId/uZgIWghiI4I2NhIUtLOwuJRHLhACtoKlnc/gI4jgI4hdJIQrAqmCvUWC2FqphSCi5o\u002BXmXFvT3IWgXzw4TI7M87t7eFfuK57ppaMQVrkFXlBHu8xLvlJvpFP5Dep4eJHkpP\u002BokOek5obMpCYzWbdWCwWiCvvSPlnhsfWJBIJ1Ot12LYt60KhgEgkonY1UuONYZLXvKhWq2g2m0in09jv9xxCPp9HuVyWZuPxWGLEK/kSOqz9A9vtdohGo7AsC6HQYZsOG\u002Bv1Gt1uF4PBQGIe3iNolsulJDYaDQyHQ2y3W8znc0wmE/T7fZXlE2hgGIYUTadTdDodzGYzmardbmO1Wqksn0CDcDiMZDKJXC6HTCYj57BYLLDZbPSZHOM14NeiqVQqUpxKpaSIJ\u002BJHKpVKKsPHa8A3THAcB61WS0aPx\u002BMy/mg0Qq1WQ6/XU1nCh/oVbPL3RXGLxaJrmmYgrrwnNXwf\u002BHqeSjzlMynv\u002BPiD4Sa3JN\u002BwSw6cgMd\u002BJx/ILw78E\u002BAHyDum0hZCUq4AAAAASUVORK5CYII=",
+              "WhenOpened": "2024-09-20T19:02:51.193Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

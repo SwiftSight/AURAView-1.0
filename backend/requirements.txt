@@ -1,0 +1,10 @@
+Flask
+flask-cors
+google-cloud-storage
+google-cloud-tasks
+google-cloud-aiplatform
+google-auth
+google-auth-oauthlib
+open3d
+numpy
+dotenv
