@@ -1,0 +1,21 @@
+name: Deploy to Google Cloud
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Authenticate to Google Cloud
+      run: |
+        gcloud auth login --brief --update-adc
+    - name: Deploy to GCP
+      run: |
+        # Your deployment commands here
