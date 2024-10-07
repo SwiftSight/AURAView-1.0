@@ -1,0 +1,84 @@
+from celery import Celery, states
+from celery.exceptions import Ignore
+from flask import current_app
+import time
+import redis
+import json
+from .image_processing import stitch_images
+
+celery = Celery('tasks', broker='redis://localhost:6379/0', backend='redis://localhost:6379/1')
+result_cache = redis.Redis(host='localhost', port=6379, db=2)
+
+class ProgressState(states.State):
+    name = 'PROGRESS'
+
+@celery.task(bind=True)
+def stitch_task(self, image_paths):
+    try:
+        total_steps = len(image_paths) + 1  # +1 for final stitching
+        
+        # Check cache for existing result
+        cache_key = f"stitch_result:{'_'.join(sorted(image_paths))}"
+        cached_result = result_cache.get(cache_key)
+        if cached_result:
+            return json.loads(cached_result)
+        
+        # Load and preprocess images
+        processed_images = []
+        for i, path in enumerate(image_paths):
+            self.update_state(state=ProgressState.name, 
+                              meta={'current': i, 'total': total_steps, 'status': f'Processing image {i+1}/{len(image_paths)}'})
+            with current_app.app_context():
+                with open(path, 'rb') as img_file:
+                    processed_images.append(preprocess_image(img_file))
+            time.sleep(0.5)  # Simulate longer processing time
+        
+        # Perform stitching
+        self.update_state(state=ProgressState.name, 
+                          meta={'current': total_steps - 1, 'total': total_steps, 'status': 'Stitching images'})
+        with current_app.app_context():
+            result = stitch_images(processed_images)
+        
+        # Cache the result
+        result_data = {'status': 'Task completed!', 'result': result}
+        result_cache.setex(cache_key, 3600, json.dumps(result_data))  # Cache for 1 hour
+        
+        return result_data
+    except Exception as e:
+        self.update_state(state=states.FAILURE, meta={'error': str(e)})
+        raise Ignore()
+
+@celery.task
+def cleanup_task(task_id):
+    # Clean up any temporary files or resources
+    pass
+
+# In your Flask route:
+@app.route('/api/stitch', methods=['POST'])
+def start_stitch():
+    image_paths = request.json['image_paths']
+    task = stitch_task.apply_async(args=[image_paths])
+    cleanup_task.apply_async(args=[task.id], countdown=3600)  # Cleanup after 1 hour
+    return jsonify({"task_id": task.id}), 202
+
+@app.route('/api/task/<task_id>', methods=['GET'])
+def get_task_status(task_id):
+    task = stitch_task.AsyncResult(task_id)
+    if task.state == 'PENDING':
+        response = {'state': task.state, 'status': 'Pending...'}
+    elif task.state == ProgressState.name:
+        response = {
+            'state': task.state,
+            'current': task.info.get('current'),
+            'total': task.info.get('total'),
+            'status': task.info.get('status')
+        }
+    elif task.state == 'SUCCESS':
+        response = {
+            'state': task.state,
+            'status': task.info.get('status'),
+            'result': task.info.get('result')
+        }
+    else:
+        response = {'state': task.state, 'status': str(task.info)}
+    return jsonify(response)
