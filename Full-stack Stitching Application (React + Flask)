@@ -11,10 +11,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import timedelta
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
-app.config['JWT_SECRET_KEY'] = 'your-secret-key'  # Change this!
+app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'fallback-secret-key')  # Use environment variable
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)  # Token expires after 1 hour
 CORS(app)
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
@@ -23,6 +26,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
+    tasks = db.relationship('Task', backref='user', lazy=True)
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -34,6 +38,8 @@ class Task(db.Model):
 @app.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
+    if User.query.filter_by(username=data['username']).first():
+        return jsonify({"message": "Username already exists"}), 400
     hashed_password = generate_password_hash(data['password'])
     new_user = User(username=data['username'], password=hashed_password)
     db.session.add(new_user)
@@ -58,17 +64,19 @@ def tasks():
         new_task = Task(title=data['title'], description=data['description'], user_id=user_id)
         db.session.add(new_task)
         db.session.commit()
-        return jsonify({"message": "Task created successfully"}), 201
+        return jsonify({"message": "Task created successfully", "task_id": new_task.id}), 201
     tasks = Task.query.filter_by(user_id=user_id).all()
-    return jsonify([{"id": task.id, "title": task.title, "description": task.description, "completed": task.completed} for task in tasks])
+    return jsonify([task.to_dict() for task in tasks])
 
-@app.route('/tasks/<int:task_id>', methods=['PUT', 'DELETE'])
+@app.route('/tasks/<int:task_id>', methods=['GET', 'PUT', 'DELETE'])
 @jwt_required()
 def task(task_id):
     task = Task.query.get_or_404(task_id)
     if task.user_id != get_jwt_identity():
         return jsonify({"message": "Unauthorized"}), 403
-    if request.method == 'PUT':
+    if request.method == 'GET':
+        return jsonify(task.to_dict())
+    elif request.method == 'PUT':
         data = request.get_json()
         task.title = data.get('title', task.title)
         task.description = data.get('description', task.description)
@@ -80,10 +88,19 @@ def task(task_id):
         db.session.commit()
         return jsonify({"message": "Task deleted successfully"})
 
+@Task.to_dict.getter
+def to_dict(self):
+    return {
+        "id": self.id,
+        "title": self.title,
+        "description": self.description,
+        "completed": self.completed
+    }
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(debug=False)  # Set to False in production
 
 # Frontend (src/App.js)
 import React from 'react';
@@ -92,6 +109,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import TaskList from './components/TaskList';
 import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -101,7 +119,7 @@ function App() {
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/tasks" component={TaskList} />
+            <PrivateRoute path="/tasks" component={TaskList} />
             <Redirect from="/" to="/login" />
           </Switch>
         </div>
@@ -114,31 +132,38 @@ export default App;
 
 # Frontend (src/components/Login.js)
 import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const { login } = useContext(AuthContext);
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
       await login(username, password);
       history.push('/tasks');
     } catch (error) {
-      console.error('Login failed:', error);
+      setError('Login failed. Please check your credentials.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      <h2>Login</h2>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <Link to="/register">Register</Link></p>
+    </div>
   );
 }
 
@@ -146,30 +171,37 @@ export default Login;
 
 # Frontend (src/components/Register.js)
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
       await axios.post('http://localhost:5000/register', { username, password });
       history.push('/login');
     } catch (error) {
-      console.error('Registration failed:', error);
+      setError('Registration failed. Username might already exist.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-      <button type="submit">Register</button>
-    </form>
+    <div>
+      <h2>Register</h2>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
+        <button type="submit">Register</button>
+      </form>
+      <p>Already have an account? <Link to="/login">Login</Link></p>
+    </div>
   );
 }
 
@@ -183,7 +215,7 @@ import { AuthContext } from '../context/AuthContext';
 function TaskList() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({ title: '', description: '' });
-  const { token } = useContext(AuthContext);
+  const { token, logout } = useContext(AuthContext);
 
   useEffect(() => {
     fetchTasks();
@@ -197,17 +229,20 @@ function TaskList() {
       setTasks(response.data);
     } catch (error) {
       console.error('Error fetching tasks:', error);
+      if (error.response && error.response.status === 401) {
+        logout();
+      }
     }
   };
 
   const addTask = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/tasks', newTask, {
+      const response = await axios.post('http://localhost:5000/tasks', newTask, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setNewTask({ title: '', description: '' });
-      fetchTasks();
+      setTasks([...tasks, { ...newTask, id: response.data.task_id }]);
     } catch (error) {
       console.error('Error adding task:', error);
     }
@@ -218,9 +253,20 @@ function TaskList() {
       await axios.delete(`http://localhost:5000/tasks/${taskId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      fetchTasks();
+      setTasks(tasks.filter(task => task.id !== taskId));
     } catch (error) {
       console.error('Error deleting task:', error);
+    }
+  };
+
+  const toggleComplete = async (taskId, completed) => {
+    try {
+      await axios.put(`http://localhost:5000/tasks/${taskId}`, { completed: !completed }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setTasks(tasks.map(task => task.id === taskId ? { ...task, completed: !completed } : task));
+    } catch (error) {
+      console.error('Error updating task:', error);
     }
   };
 
@@ -246,11 +292,19 @@ function TaskList() {
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>
-            {task.title} - {task.description}
+            <input
+              type="checkbox"
+              checked={task.completed}
+              onChange={() => toggleComplete(task.id, task.completed)}
+            />
+            <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+              {task.title} - {task.description}
+            </span>
             <button onClick={() => deleteTask(task.id)}>Delete</button>
           </li>
         ))}
       </ul>
+      <button onClick={logout}>Logout</button>
     </div>
   );
 }
@@ -258,13 +312,21 @@ function TaskList() {
 export default TaskList;
 
 # Frontend (src/context/AuthContext.js)
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'));
+
+  useEffect(() => {
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    } else {
+      delete axios.defaults.headers.common['Authorization'];
+    }
+  }, [token]);
 
   const login = async (username, password) => {
     try {
@@ -288,3 +350,27 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+# Frontend (src/components/PrivateRoute.js)
+import React, { useContext } from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const { token } = useContext(AuthContext);
+
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        token ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
+      }
+    />
+  );
+};
+
+export default PrivateRoute;
