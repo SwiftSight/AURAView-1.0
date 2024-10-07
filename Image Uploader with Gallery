@@ -1,0 +1,122 @@
+import React, { useState, useCallback, useEffect } from 'react';
+import { useDropzone } from 'react-dropzone';
+
+const AdvancedImageUploader = ({ onImagesSelected }) => {
+  const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const onDrop = useCallback((acceptedFiles) => {
+    setImages(prevImages => [
+      ...prevImages,
+      ...acceptedFiles.map(file => Object.assign(file, {
+        preview: URL.createObjectURL(file),
+        rotation: 0,
+        brightness: 100,
+        contrast: 100
+      }))
+    ]);
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: 'image/*',
+    multiple: true
+  });
+
+  useEffect(() => {
+    onImagesSelected(images);
+  }, [images, onImagesSelected]);
+
+  const rotateImage = (index, direction) => {
+    setImages(prevImages => prevImages.map((img, i) => 
+      i === index ? { ...img, rotation: (img.rotation + (direction === 'right' ? 90 : -90)) % 360 } : img
+    ));
+  };
+
+  const adjustBrightness = (index, value) => {
+    setImages(prevImages => prevImages.map((img, i) => 
+      i === index ? { ...img, brightness: value } : img
+    ));
+  };
+
+  const adjustContrast = (index, value) => {
+    setImages(prevImages => prevImages.map((img, i) => 
+      i === index ? { ...img, contrast: value } : img
+    ));
+  };
+
+  const removeImage = (index) => {
+    setImages(prevImages => prevImages.filter((_, i) => i !== index));
+    if (selectedImage === index) setSelectedImage(null);
+  };
+
+  return (
+    <div>
+      <div {...getRootProps()} style={dropzoneStyles}>
+        <input {...getInputProps()} />
+        {isDragActive ? <p>Drop the images here ...</p> : <p>Drag 'n' drop images here, or click to select</p>}
+      </div>
+      <div style={galleryStyles}>
+        {images.map((file, index) => (
+          <div key={file.name} style={imageContainerStyles}>
+            <img
+              src={file.preview}
+              style={{
+                ...previewImageStyles,
+                transform: `rotate(${file.rotation}deg)`,
+                filter: `brightness(${file.brightness}%) contrast(${file.contrast}%)`
+              }}
+              alt="preview"
+              onClick={() => setSelectedImage(index)}
+            />
+            {selectedImage === index && (
+              <div style={editControlsStyles}>
+                <button onClick={() => rotateImage(index, 'left')}>↪️</button>
+                <button onClick={() => rotateImage(index, 'right')}>↩️</button>
+                <input type="range" min="0" max="200" value={file.brightness} onChange={(e) => adjustBrightness(index, e.target.value)} />
+                <input type="range" min="0" max="200" value={file.contrast} onChange={(e) => adjustContrast(index, e.target.value)} />
+                <button onClick={() => removeImage(index)}>🗑️</button>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const dropzoneStyles = {
+  border: '2px dashed #cccccc',
+  borderRadius: '4px',
+  padding: '20px',
+  textAlign: 'center',
+  cursor: 'pointer'
+};
+
+const galleryStyles = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  marginTop: '16px'
+};
+
+const imageContainerStyles = {
+  margin: '4px',
+  position: 'relative'
+};
+
+const previewImageStyles = {
+  width: '150px',
+  height: '150px',
+  objectFit: 'cover'
+};
+
+const editControlsStyles = {
+  position: 'absolute',
+  bottom: '0',
+  left: '0',
+  right: '0',
+  background: 'rgba(0,0,0,0.5)',
+  padding: '4px'
+};
+
+export default AdvancedImageUploader;
