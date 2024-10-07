@@ -1,0 +1,37 @@
+import React, { useState } from 'react';
+   import axios from 'axios';
+
+   function ImageUploader() {
+     const [selectedFiles, setSelectedFiles] = useState([]);
+     const [stitchedImage, setStitchedImage] = useState(null);
+
+     const handleFileChange = (event) => {
+       setSelectedFiles(Array.from(event.target.files));
+     };
+
+     const handleStitchSubmit = async () => {
+       const formData = new FormData();
+       selectedFiles.forEach((file) => {
+         formData.append('images', file);
+       });
+
+       try {
+         const response = await axios.post('http://localhost:5000/api/stitch', formData, {
+           headers: { 'Content-Type': 'multipart/form-data' }
+         });
+         setStitchedImage(response.data.result);
+       } catch (error) {
+         console.error('Stitching failed:', error);
+       }
+     };
+
+     return (
+       <div>
+         <input type="file" multiple onChange={handleFileChange} />
+         <button onClick={handleStitchSubmit}>Stitch Images</button>
+         {stitchedImage && <img src={stitchedImage} alt="Stitched Result" />}
+       </div>
+     );
+   }
+
+   export default ImageUploader;
