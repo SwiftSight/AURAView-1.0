@@ -1,0 +1,73 @@
+import cv2
+import numpy as np
+from PIL import Image
+import io
+import logging
+from scipy import ndimage
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def stitch_images(images, mode='panorama'):
+    try:
+        cv_images = [cv2.imdecode(np.frombuffer(img.read(), np.uint8), cv2.IMREAD_COLOR) for img in images]
+        cv_images = [preprocess_image(img) for img in cv_images]
+        
+        if mode == 'panorama':
+            stitcher = cv2.Stitcher.create(cv2.Stitcher_PANORAMA)
+        elif mode == 'scans':
+            stitcher = cv2.Stitcher.create(cv2.Stitcher_SCANS)
+        else:
+            raise ValueError("Invalid stitching mode")
+        
+        status, stitched = stitcher.stitch(cv_images)
+        
+        if status != cv2.Stitcher_OK:
+            raise Exception(f"Stitching failed with status {status}")
+        
+        stitched = postprocess_image(stitched)
+        
+        pil_img = Image.fromarray(cv2.cvtColor(stitched, cv2.COLOR_BGR2RGB))
+        img_byte_arr = io.BytesIO()
+        pil_img.save(img_byte_arr, format='PNG')
+        return img_byte_arr.getvalue()
+    
+    except Exception as e:
+        logger.error(f"Stitching failed: {str(e)}")
+        raise
+
+def preprocess_image(image):
+    logger.info("Preprocessing image")
+    image = cv2.resize(image, (0,0), fx=0.5, fy=0.5)  # Resize for faster processing
+    image = cv2.fastNlMeansDenoisingColored(image, None, 10, 10, 7, 21)  # Denoise
+    image = cv2.detailEnhance(image, sigma_s=10, sigma_r=0.15)  # Enhance details
+    return image
+
+def postprocess_image(image):
+    logger.info("Postprocessing stitched image")
+    image = cv2.fastNlMeansDenoisingColored(image, None, 10, 10, 7, 21)  # Denoise
+    image = adjust_brightness_contrast(image, brightness=10, contrast=1.25)
+    return image
+
+def adjust_brightness_contrast(image, brightness=0, contrast=1.0):
+    return cv2.addWeighted(image, contrast, image, 0, brightness)
+
+def detect_and_correct_perspective(image):
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    edges = cv2.Canny(gray, 50, 150, apertureSize=3)
+    lines = cv2.HoughLines(edges, 1, np.pi/180, 200)
+    
+    if lines is not None:
+        for rho, theta in lines[0]:
+            a = np.cos(theta)
+            b = np.sin(theta)
+            x0 = a*rho
+            y0 = b*rho
+            x1 = int(x0 + 1000*(-b))
+            y1 = int(y0 + 1000*(a))
+            x2 = int(x0 - 1000*(-b))
+            y2 = int(y0 - 1000*(a))
+            cv2.line(image, (x1,y1), (x2,y2), (0,0,255), 2)
+    
+    return image
+
