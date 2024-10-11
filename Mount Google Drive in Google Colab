@@ -1,0 +1,25 @@
+from google.colab import drive
+import os
+
+# Mount Google Drive
+drive.mount('/content/drive')
+
+# Verify the mount was successful
+if os.path.exists('/content/drive/My Drive'):
+    print("Google Drive mounted successfully!")
+else:
+    print("Failed to mount Google Drive. Please check your authorization.")
+
+# Example: List contents of your Google Drive root
+print("\nContents of your Google Drive root:")
+for item in os.listdir('/content/drive/My Drive'):
+    print(item)
+
+# Example: Access a specific file or folder
+folder_path = 'Location where Folder is located'
+if os.path.exists(folder_path):
+    print(f"\nContents of {folder_path}:")
+    for item in os.listdir(folder_path):
+        print(item)
+else:
+    print(f"\nFolder '{folder_path}' not found. Please check the path.")
