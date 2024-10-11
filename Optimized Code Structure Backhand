@@ -1,0 +1,70 @@
+import time
+from typing import List, Dict
+from collections import defaultdict
+from functools import lru_cache
+
+class OptimizedProcessor:
+    def __init__(self):
+        self.data: Dict[str, List[int]] = defaultdict(list)
+
+    def process_data(self, key: str, value: int) -> None:
+        """
+        Process and store data efficiently.
+        
+        Args:
+            key (str): The key for the data.
+            value (int): The value to be stored.
+        """
+        self.data[key].append(value)
+
+    @lru_cache(maxsize=100)
+    def calculate_average(self, key: str) -> float:
+        """
+        Calculate the average for a given key.
+        
+        Args:
+            key (str): The key for which to calculate the average.
+        
+        Returns:
+            float: The calculated average.
+        """
+        values = self.data.get(key, [])
+        return sum(values) / len(values) if values else 0.0
+
+    def batch_process(self, data: List[Dict[str, int]]) -> None:
+        """
+        Process a batch of data efficiently.
+        
+        Args:
+            data (List[Dict[str, int]]): A list of dictionaries containing key-value pairs.
+        """
+        for item in data:
+            for key, value in item.items():
+                self.process_data(key, value)
+
+def main():
+    processor = OptimizedProcessor()
+    
+    # Example batch data
+    batch_data = [
+        {"A": 1, "B": 2},
+        {"A": 3, "C": 4},
+        {"B": 5, "C": 6}
+    ]
+    
+    # Measure execution time
+    start_time = time.time()
+    
+    # Process batch data
+    processor.batch_process(batch_data)
+    
+    # Calculate and print averages
+    for key in processor.data.keys():
+        avg = processor.calculate_average(key)
+        print(f"Average for {key}: {avg}")
+    
+    end_time = time.time()
+    print(f"Execution time: {end_time - start_time} seconds")
+
+if __name__ == "__main__":
+    main()
