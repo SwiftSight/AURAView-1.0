@@ -1,0 +1,181 @@
+import os
+import time
+import zipfile
+import concurrent.futures
+from google.colab import files
+from google.colab import drive
+import numpy as np
+import cv2
+import tensorflow as tf
+
+class FastImageUploader:
+    def __init__(self, max_workers=4):
+        """
+        Initialize the FastImageUploader with configurable concurrent processing
+        
+        Args:
+            max_workers (int): Number of concurrent upload/processing threads
+        """
+        self.max_workers = max_workers
+        self.uploaded_files = []
+        
+    def mount_google_drive(self):
+        """
+        Mount Google Drive to access files directly
+        """
+        try:
+            drive.mount('/content/drive')
+            print("Google Drive mounted successfully!")
+        except Exception as e:
+            print(f"Error mounting Google Drive: {e}")
+    
+    def upload_local_files(self, file_type='images'):
+        """
+        Upload files from local drive using Google Colab's file upload interface
+        
+        Args:
+            file_type (str): Type of files to upload ('images', 'zip')
+        
+        Returns:
+            list: Paths of uploaded files
+        """
+        print(f"Upload your {file_type}:")
+        uploaded = files.upload()
+        
+        self.uploaded_files = list(uploaded.keys())
+        print(f"Uploaded {len(self.uploaded_files)} {file_type}")
+        
+        return self.uploaded_files
+    
+    def upload_from_drive_folder(self, folder_path):
+        """
+        Upload images from a specific Google Drive folder
+        
+        Args:
+            folder_path (str): Path to the folder in Google Drive
+        
+        Returns:
+            list: Paths of uploaded files
+        """
+        full_path = os.path.join('/content/drive/MyDrive', folder_path)
+        
+        if not os.path.exists(full_path):
+            print(f"Folder {full_path} does not exist!")
+            return []
+        
+        image_files = [
+            os.path.join(full_path, f) 
+            for f in os.listdir(full_path) 
+            if f.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif'))
+        ]
+        
+        print(f"Found {len(image_files)} images in {folder_path}")
+        return image_files
+    
+    def unzip_images(self, zip_file):
+        """
+        Unzip image files efficiently
+        
+        Args:
+            zip_file (str): Path to the zip file
+        
+        Returns:
+            list: Paths of extracted image files
+        """
+        extract_path = '/content/extracted_images'
+        os.makedirs(extract_path, exist_ok=True)
+        
+        with zipfile.ZipFile(zip_file, 'r') as zip_ref:
+            zip_ref.extractall(extract_path)
+        
+        image_files = [
+            os.path.join(extract_path, f) 
+            for f in os.listdir(extract_path) 
+            if f.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif'))
+        ]
+        
+        print(f"Extracted {len(image_files)} images from {zip_file}")
+        return image_files
+    
+    def preprocess_images(self, image_files, target_size=(224, 224)):
+        """
+        Preprocess images in parallel with efficient loading
+        
+        Args:
+            image_files (list): List of image file paths
+            target_size (tuple): Resize dimensions for images
+        
+        Returns:
+            numpy.ndarray: Preprocessed image array
+        """
+        def _load_and_preprocess_image(image_path):
+            try:
+                # Use OpenCV for faster image reading
+                img = cv2.imread(image_path)
+                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                img = cv2.resize(img, target_size)
+                img = img.astype(np.float32) / 255.0  # Normalize
+                return img
+            except Exception as e:
+                print(f"Error processing {image_path}: {e}")
+                return None
+        
+        # Use ThreadPoolExecutor for concurrent image processing
+        with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+            processed_images = list(executor.map(_load_and_preprocess_image, image_files))
+        
+        # Remove None values (failed image loads)
+        processed_images = [img for img in processed_images if img is not None]
+        
+        return np.array(processed_images)
+    
+    def benchmark_upload_speed(self, image_files):
+        """
+        Measure upload and processing speed
+        
+        Args:
+            image_files (list): List of image file paths
+        
+        Returns:
+            dict: Upload and processing performance metrics
+        """
+        start_time = time.time()
+        processed_images = self.preprocess_images(image_files)
+        end_time = time.time()
+        
+        metrics = {
+            'total_images': len(image_files),
+            'total_time': end_time - start_time,
+            'images_per_second': len(image_files) / (end_time - start_time),
+            'processed_shape': processed_images.shape
+        }
+        
+        print("\n--- Upload Speed Metrics ---")
+        for key, value in metrics.items():
+            print(f"{key}: {value}")
+        
+        return metrics
+
+# Example Usage
+def main():
+    # Initialize the uploader
+    uploader = FastImageUploader(max_workers=8)
+    
+    # Mount Google Drive (optional)
+    uploader.mount_google_drive()
+    
+    # Option 1: Upload from local drive
+    local_images = uploader.upload_local_files()
+    
+    # Option 2: Upload from Drive folder
+    # drive_images = uploader.upload_from_drive_folder('path/to/image/folder')
+    
+    # Option 3: Unzip and upload
+    # zip_images = uploader.unzip_images('images.zip')
+    
+    # Preprocess and benchmark
+    processed_images = uploader.preprocess_images(local_images)
+    uploader.benchmark_upload_speed(local_images)
+
+# Uncomment to run
+# main()
