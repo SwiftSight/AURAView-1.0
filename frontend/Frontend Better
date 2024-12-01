@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Image Converter Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
+        }
+        .premium-glow {
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.5);
+            border: 2px solid #34d399;
+        }
+        .plan-card {
+            transition: all 0.3s ease;
+        }
+        .plan-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="/api/placeholder/50/50" alt="Logo" class="h-10 w-10 mr-3">
+            <h1 class="text-2xl font-bold text-gray-800">3D Converter Pro</h1>
+        </div>
+        <div class="space-x-4">
+            <button id="login-btn" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                <i class="fas fa-user mr-2"></i>Login
+            </button>
+            <button id="signup-btn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                <i class="fas fa-user-plus mr-2"></i>Sign Up
+            </button>
+        </div>
+    </nav>
+
+    <div class="flex-grow container mx-auto px-4 py-8">
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Conversion Section -->
+            <div class="md:col-span-2 bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">
+                    2D to 3D Image Converter
+                </h2>
+                
+                <form id="image-upload" class="dropzone border-2 border-dashed border-blue-300 rounded-lg p-8 text-center">
+                    <div class="dz-message">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-blue-500 mb-4"></i>
+                        <p class="text-gray-600 text-lg font-semibold">
+                            Drag and Drop Images or Click to Upload
+                        </p>
+                        <p class="text-gray-500 text-sm mt-2">
+                            Max 10 Images | Supports JPEG, PNG, BMP
+                        </p>
+                    </div>
+                </form>
+
+                <div id="preview-container" class="mt-6 grid grid-cols-4 gap-4">
+                    <!-- Image previews will be dynamically added here -->
+                </div>
+
+                <div class="mt-6 flex justify-center space-x-4">
+                    <button id="convert-btn" class="bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold py-3 px-8 rounded-lg hover:from-green-500 hover:to-blue-600 transition transform hover:scale-105">
+                        <i class="fas fa-magic mr-2"></i>Convert to 3D
+                    </button>
+                    <button id="clear-btn" class="bg-red-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-red-600 transition transform hover:scale-105">
+                        <i class="fas fa-trash-alt mr-2"></i>Clear All
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pricing Section -->
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 plan-card">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-gray-800">Starter Plan</h3>
+                    <div class="text-center mb-4">
+                        <span class="text-4xl font-bold text-blue-600">$9.99</span>
+                        <span class="text-gray-500 block">per month</span>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Up to 50 Image Conversions
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Basic 3D Rendering
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Standard Support
+                        </li>
+                    </ul>
+                    <button class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600">
+                        Choose Starter
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 plan-card premium-glow">
+                    <div class="absolute -top-3 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm">
+                        Most Popular
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-4 text-gray-800">Pro Plan</h3>
+                    <div class="text-center mb-4">
+                        <span class="text-4xl font-bold text-green-600">$29.99</span>
+                        <span class="text-gray-500 block">per month</span>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Unlimited Image Conversions
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            High-Quality 3D Rendering
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Priority Support
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Advanced File Formats
+                        </li>
+                    </ul>
+                    <button class="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600">
+                        Choose Pro
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conversion Results Modal -->
+        <div id="results-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white rounded-xl p-8 max-w-2xl w-full">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Conversion Results</h2>
+                    <button id="close-modal" class="text-red-500 text-2xl">&times;</button>
+                </div>
+                <div id="3d-results" class="grid grid-cols-3 gap-4">
+                    <!-- 3D conversion results will be displayed here -->
+                </div>
+                <div class="mt-6 text-center">
+                    <button class="bg-blue-500 text-white px-6 py-3 rounded-lg">
+                        Download All
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 3D Converter Pro. All Rights Reserved.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="hover:text-blue-400">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-400">Terms of Service</a>
+                <a href="#" class="hover:text-blue-400">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Frontend JavaScript would go here (similar to previous implementation)
+        // Add more advanced interactions, modal handling, etc.
+    </script>
+</body>
+</html>
