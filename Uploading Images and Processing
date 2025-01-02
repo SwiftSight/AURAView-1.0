@@ -1,0 +1,124 @@
+import os
+import sys
+import subprocess
+import platform
+def check_system_requirements():
+    """
+    Check the current system's compatibility and requirements.
+    """
+    print("Checking system requirements...")
+    # Check operating system
+    current_os = platform.system()
+    if current_os not in ['Linux', 'Darwin', 'Windows']:
+        raise SystemError(f"Unsupported operating system: {current_os}")
+    print(f"Operating System: {current_os}")
+    # Check Python version
+    python_version = platform.python_version()
+    print(f"Python Version: {python_version}")
+    if sys.version_info < (3, 8):
+        raise ValueError("Python 3.8 or higher is required.")
+def download_miniconda():
+    """
+    Download and install Miniconda based on the operating system.
+    """
+    print("Downloading Miniconda...")
+    current_os = platform.system()
+    miniconda_url = {
+        'Linux': 'https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh',
+        'Darwin': 'https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh',
+        'Windows': 'https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe'
+    }
+    try:
+        subprocess.run(['wget', miniconda_url[current_os], '-O', 'miniconda_installer'], check=True)
+        # Install Miniconda
+        if current_os == 'Windows':
+            subprocess.run(['start', '/wait', 'miniconda_installer', '/S'], shell=True, check=True)
+        else:
+            subprocess.run(['bash', 'miniconda_installer', '-b', '-p', '$HOME/miniconda'], check=True)
+        print("Miniconda installed successfully!")
+    except Exception as e:
+        print(f"Error installing Miniconda: {e}")
+def install_cuda():
+    """
+    Guide for CUDA 11.8 installation.
+    Note: Actual installation depends on system and GPU.
+    """
+    print("CUDA 11.8 Installation Guide:")
+    print("1. Visit NVIDIA's website: https://developer.nvidia.com/cuda-11-8-0-download-archive")
+    print("2. Select your operating system, architecture, and distribution")
+    print("3. Download and install the CUDA 11.8 toolkit")
+    print("Automatic installation is system-specific and requires manual intervention.")
+def install_colmap():
+    """
+    Install COLMAP with conda and pip.
+    """
+    try:
+        # Create a new conda environment
+        subprocess.run(['conda', 'create', '-n', 'gaussian_splatting', 'python=3.8', '-y'], check=True)
+        subprocess.run(['conda', 'activate', 'gaussian_splatting'], shell=True, check=True)
+        # Install COLMAP dependencies
+        subprocess.run(['conda', 'install', '-c', 'conda-forge', 'colmap', '-y'], check=True)
+        print("COLMAP installed successfully!")
+    except Exception as e:
+        print(f"Error installing COLMAP: {e}")
+def prepare_image_input(input_directory):
+    """
+    Validate and prepare image input directory.
+    """
+    if not os.path.exists(input_directory):
+        raise FileNotFoundError(f"Input directory not found: {input_directory}")
+    supported_extensions = ['.jpg', '.jpeg', '.png', '.tiff', '.bmp']
+    images = [f for f in os.listdir(input_directory) if os.path.splitext(f)[1].lower() in supported_extensions]
+    if not images:
+        raise ValueError("No supported image files found in the input directory.")
+    print(f"Found {len(images)} image files.")
+    return images
+def clone_and_install_gaussian_splatting():
+    """
+    Comprehensive method to clone and install Gaussian Splatting repository
+    """
+    # Repository URL
+    repo_url = "https://github.com/graphdeco-inria/gaussian-splatting.git"
+    try:
+        # Step 1: Clone the repository
+        print("Cloning Gaussian Splatting repository...")
+        subprocess.run(['git', 'clone', repo_url], check=True)
+        # Change to repository directory
+        os.chdir('gaussian-splatting')
+        # Step 2: Create a virtual environment
+        print("Creating virtual environment...")
+        subprocess.run([sys.executable, '-m', 'venv', 'venv'], check=True)
+        # Step 3: Activate virtual environment
+        activate_this = os.path.join('venv', 'bin', 'activate_this.py')
+        exec(open(activate_this).read(), {'__file__': activate_this})
+        # Step 4: Install requirements
+        print("Installing repository requirements...")
+        subprocess.run([sys.executable, '-m', 'pip', 'install', '-r', 'requirements.txt'], check=True)
+        # Step 5: Install submodule dependencies
+        print("Initializing and updating submodules...")
+        subprocess.run(['git', 'submodule', 'update', '--init', '--recursive'], check=True)
+        # Step 6: Build CUDA extensions
+        print("Building CUDA extensions...")
+        subprocess.run([sys.executable, 'setup.py', 'build_ext', '--inplace'], check=True)
+        print("Gaussian Splatting repository successfully installed!")
+    except subprocess.CalledProcessError as e:
+        print(f"Error during installation: {e}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+def main():
+    # Validate system
+    check_system_requirements()
+    # Install Miniconda
+    download_miniconda()
+    # CUDA Installation Guide
+    install_cuda()
+    # Clone and Install Gaussian Splatting
+    clone_and_install_gaussian_splatting()
+    # Install COLMAP
+    install_colmap()
+    # Example image input (replace with actual path)
+    input_directory = '/path/to/your/images'
+    images = prepare_image_input(input_directory)
+    print("Images found:", images)
+if __name__ == '__main__':
+    main()
