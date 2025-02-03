@@ -1,0 +1,104 @@
+import React, { useState } from 'react';
+import { Camera, Upload } from 'lucide-react';
+
+const ImageTo3DConverter = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [processing, setProcessing] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => setSelectedImage(e.target.result);
+      reader.readAsDataURL(file);
+      // Here you would typically call your 2D to 3D conversion API
+      simulateProcessing();
+    }
+  };
+
+  const simulateProcessing = () => {
+    setProcessing(true);
+    setTimeout(() => setProcessing(false), 2000);
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <div className="max-w-4xl mx-auto p-6">
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-2xl font-bold">2D to 3D Image Converter</h1>
+            <Camera className="w-8 h-8 text-blue-500" />
+          </div>
+
+          {/* Upload Section */}
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="hidden"
+              id="imageInput"
+            />
+            <label
+              htmlFor="imageInput"
+              className="cursor-pointer flex flex-col items-center"
+            >
+              <Upload className="w-12 h-12 text-gray-400 mb-4" />
+              <span className="text-gray-600">
+                Click to upload or drag and drop your 2D image
+              </span>
+            </label>
+          </div>
+
+          {/* Preview Section */}
+          {selectedImage && (
+            <div className="mt-8 grid grid-cols-2 gap-6">
+              <div className="border rounded-lg p-4">
+                <h2 className="text-lg font-semibold mb-4">Original Image</h2>
+                <img
+                  src={selectedImage}
+                  alt="Original"
+                  className="w-full h-64 object-contain"
+                />
+              </div>
+              <div className="border rounded-lg p-4">
+                <h2 className="text-lg font-semibold mb-4">3D Preview</h2>
+                <div className="w-full h-64 bg-gray-100 flex items-center justify-center">
+                  {processing ? (
+                    <div className="animate-pulse">Processing...</div>
+                  ) : (
+                    <div className="text-gray-500">
+                      3D preview would appear here
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Controls */}
+          {selectedImage && !processing && (
+            <div className="mt-6 flex justify-end space-x-4">
+              <button
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                onClick={() => {/* Handle download */}}
+              >
+                Download 3D Model
+              </button>
+            </div>
+          )}
+
+          {error && (
+            <div className="mt-4 p-4 bg-red-100 text-red-700 rounded">
+              {error}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ImageTo3DConverter;
